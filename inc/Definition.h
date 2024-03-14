@@ -1,0 +1,14 @@
+//
+// Created by Oem on 14.03.2024.
+//
+
+#ifndef COSMICVOYAGER_DEFINITION_H
+#define COSMICVOYAGER_DEFINITION_H
+
+#define AP_CALL_SPACE_PIRATES 1
+#define SP_RUN 1
+#define SP_FIGHT 2
+#define SP_BARGAIN 3
+#define CONTINUE 0
+
+#endif //COSMICVOYAGER_DEFINITION_H
