@@ -10,9 +10,11 @@
 class NormalShip : public SpaceShip {
 public:
     NormalShip() : SpaceShip(1.0) {}
-    void displayStatus() const override{
-        std::cout << "Normal ship";
+
+    void getShipName() const override {
+        std::cout << "Normal Ship";
     }
+
 private:
 protected:
 };

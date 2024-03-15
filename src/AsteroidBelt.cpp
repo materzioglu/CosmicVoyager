@@ -17,6 +17,13 @@ int AsteroidBelt::executeEvent(std::shared_ptr<SpaceShip> chosenShip) {
             damage += defaultDamage * chosenShip->getShipCoefficent();
         }
     }
+    if(damage != 0) {
+        std::cout << "You got damaged.\n";
+    }
+    else {
+        std::cout << "Congrats! You did not get damaged.\n";
+    }
+
     changedHealth -= damage;
     chosenShip->setHealth(changedHealth);
     return CONTINUE;

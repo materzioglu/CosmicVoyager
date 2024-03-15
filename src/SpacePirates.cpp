@@ -77,7 +77,6 @@ int SpacePirates::executeEvent(std::shared_ptr<SpaceShip> chosenShip) {
                     std::cout << "Congrats! You are able to run away from the space pirates.\n";
                     changedFuel -= requiredFuel;
                     chosenShip->setFuel(changedFuel);
-                    std::cout << "Remaining fuel: " << changedFuel << "\n";
                     break;
                 }
                 else {
@@ -106,7 +105,6 @@ int SpacePirates::executeEvent(std::shared_ptr<SpaceShip> chosenShip) {
                 std::cout << "Sorry, you loosed the fight.\n";
                 changedHealth -= defaultDamage * chosenShip->getShipCoefficent();
                 chosenShip->setHealth(changedHealth);
-                std::cout << "Remaining health: " << changedHealth << "\n";
                 break;
             }
         }
@@ -117,7 +115,6 @@ int SpacePirates::executeEvent(std::shared_ptr<SpaceShip> chosenShip) {
                 changedMoney -= payment;
                 chosenShip->setMoney(changedMoney);
                 std::cout << "You pay " << payment << " to space pirates.\n";
-                std::cout << "Remaining money: " << changedHealth << "\n";
                 break;
             }
             else {

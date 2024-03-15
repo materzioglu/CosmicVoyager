@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <string>
+#include <utility>
 #include "Definition.h"
 
 class SpaceShip {
@@ -19,7 +20,7 @@ public:
 
     virtual ~SpaceShip() = default;
 
-    virtual void displayStatus() const = 0;
+    virtual void getShipName() const = 0;
 
     double getFuel() {
         return fuel;

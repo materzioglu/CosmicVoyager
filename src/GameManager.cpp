@@ -37,13 +37,14 @@ std::shared_ptr<SpaceShip> GameManager::chooseShip() {
             chosenShip = std::make_shared<StrongShip>();
             break;
     }
-    std::cout << "You chose ship \n";
+    std::cout << "\nYou chose ";
+    chosenShip->getShipName();
+    std::cout << ". Let's start!\n\n";
     return chosenShip;
 }
 
 std::shared_ptr<GameEvent> GameManager::callEvent() {
     int chosenEvent = generateRandomNumber(3);
-    std::cout << "chosen event: " << chosenEvent << "\n";
     std::shared_ptr<GameEvent> calledEvent;
     switch (chosenEvent) {
         case 1:
@@ -62,6 +63,7 @@ std::shared_ptr<GameEvent> GameManager::callEvent() {
 void GameManager::initializeGameManager() {
     _chosenShip = chooseShip();
     for(int i = 0; i < 5; i++) {
+        std::cout << "EVENT: " << i + 1 << "\n";
         _calledEvent = callEvent();
         int eventResult = _calledEvent->executeEvent(_chosenShip);
         if(eventResult == AP_CALL_SPACE_PIRATES) {
@@ -71,6 +73,9 @@ void GameManager::initializeGameManager() {
         if(!checkFuel()) {
             break;
         }
+        std::cout << "\n";
+        printCurrentValues();
+        std::cout << "\n";
     }
     printGameResult();
 }
@@ -85,7 +90,13 @@ double GameManager::getGameScore() {
 
 void GameManager::printGameResult() {
     double score = getGameScore();
-    std::cout << "Your score: " << score;
+    std::cout << "Game is over. Your score: " << score;
+}
+
+void GameManager::printCurrentValues() {
+    std::cout << "Current fuel: " << _chosenShip->getFuel() << "\n";
+    std::cout << "Current health: " << _chosenShip->getHealth() << "\n";
+    std::cout << "Current money: " << _chosenShip->getMoney() << "\n\n";
 }
 
 bool GameManager::checkFuel() {

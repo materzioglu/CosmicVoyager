@@ -10,9 +10,11 @@
 class FastShip : public SpaceShip {
 public:
     FastShip() : SpaceShip(1.5) {}
-    void displayStatus() const override {
-        std::cout << "Fast ship";
+
+    void getShipName() const override {
+        std::cout << "Fast Ship";
     }
+
 private:
 protected:
 };

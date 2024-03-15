@@ -25,6 +25,7 @@ public:
     bool checkFuel();
     double getGameScore();
     void printGameResult();
+    void printCurrentValues();
     std::shared_ptr<SpaceShip> chooseShip();
     std::shared_ptr<GameEvent> callEvent();
 
