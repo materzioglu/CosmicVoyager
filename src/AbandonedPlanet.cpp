@@ -7,9 +7,10 @@
 
 int AbandonedPlanet::executeEvent(std::shared_ptr<SpaceShip> chosenShip) {
     std::cout << "You come to the Abandoned Planet. You will gain money or encounter with space pirates.\n";
-    double gain{10.0};
+    const double gain{10.0};
     double changedMoney{chosenShip->getMoney()};
-    int option = GameManager::generateRandomNumber(2);
+    const int randOptionLimit{2};
+    int option = GameManager::generateRandomNumber(randOptionLimit);
     if(option == 1) {
         changedMoney += gain;
         chosenShip->setMoney(changedMoney);

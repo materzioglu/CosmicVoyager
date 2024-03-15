@@ -44,7 +44,8 @@ std::shared_ptr<SpaceShip> GameManager::chooseShip() {
 }
 
 std::shared_ptr<GameEvent> GameManager::callEvent() {
-    int chosenEvent = generateRandomNumber(3);
+    const int randEventLimit{3};
+    int chosenEvent = generateRandomNumber(randEventLimit);
     std::shared_ptr<GameEvent> calledEvent;
     switch (chosenEvent) {
         case 1:
@@ -61,8 +62,9 @@ std::shared_ptr<GameEvent> GameManager::callEvent() {
 }
 
 void GameManager::initializeGameManager() {
+    const int callingAmount{5};
     _chosenShip = chooseShip();
-    for(int i = 0; i < 5; i++) {
+    for(int i = 0; i < callingAmount; i++) {
         std::cout << "EVENT: " << i + 1 << "\n";
         _calledEvent = callEvent();
         int eventResult = _calledEvent->executeEvent(_chosenShip);
@@ -84,7 +86,10 @@ double GameManager::getGameScore() {
     double currentFuel{_chosenShip->getFuel()};
     double currentHealth{_chosenShip->getHealth()};
     double currentMoney{_chosenShip->getMoney()};
-    double score = currentFuel * 5 + currentHealth * 10 + currentMoney * 10;
+    const int fuelCoefficient{5};
+    const int healthCoefficient{10};
+    const int moneyCoefficient{10};
+    double score = currentFuel * fuelCoefficient + currentHealth * healthCoefficient + currentMoney * moneyCoefficient;
     return score;
 }
 
@@ -100,9 +105,9 @@ void GameManager::printCurrentValues() {
 }
 
 bool GameManager::checkFuel() {
+    const int leastFuel{0};
     double currentFuel{_chosenShip->getFuel()};
-//    return currentFuel > 0;
-    if(currentFuel <= 0){
+    if(currentFuel <= leastFuel){
         return false;
     }
     else {
