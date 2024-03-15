@@ -16,11 +16,7 @@ public:
     SpacePirates() = default;
 
     int executeEvent(std::shared_ptr<SpaceShip> chosenShip);
-//    int runAway(std::shared_ptr<SpaceShip> chosenShip);
-//    int fight(std::shared_ptr<SpaceShip> chosenShip);
-//    int bargain(std::shared_ptr<SpaceShip> chosenShip);
     int chooseOption();
-//    int choose1of2();
 
 private:
 protected:

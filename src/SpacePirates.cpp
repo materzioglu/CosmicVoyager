@@ -16,48 +16,6 @@ int SpacePirates::chooseOption() {
     return option;
 }
 
-//int SpacePirates::choose1of2() {
-//    int option{0};
-//    std::cout << "Please enter (2) for fighting, and (3) for bargaining.\n";
-//    std::cin >> option;
-//    while(!((option == SP_FIGHT) || (option == SP_BARGAIN))) {
-//        std::cout << "This is an invalid value. Please enter (2) for fighting, and (3) for bargaining.\n";
-//        std::cin >> option;
-//    }
-//    return option;
-//}
-//
-//int SpacePirates::runAway(std::shared_ptr<SpaceShip> chosenShip) {
-//    double requiredFuel{33.0};
-//    double changedFuel{chosenShip->getFuel()};
-//    double defaultEscapeProbability{0.5};
-//    double escapeProbability = (GameManager::generateRandomNumber(101) - 1) / 100;
-//    std::cout << "You chose to try running away. Good luck.\n";
-//    if(chosenShip->getFuel() >= requiredFuel) {
-//        if(escapeProbability < defaultEscapeProbability * chosenShip->getShipCoefficent()){
-//            std::cout << "Congrats! You are able to run away from the space pirates.\n";
-//            changedFuel -= requiredFuel;
-//            chosenShip->setFuel(changedFuel);
-//            std::cout << "Remaining fuel: " << changedFuel << "\n";
-//        }
-//        else {
-//            std::cout << "Unfortunately, you cannot be able to run away from the space pirates. You encounter with space pirates again.\n";
-//        }
-//    }
-//    else {
-//        std::cout << "You do not have enough fuel. So you cannot choose to run away.\n";
-//        int option = choose1of2();
-//    }
-//}
-//
-//int SpacePirates::fight(std::shared_ptr<SpaceShip> chosenShip) {
-//
-//}
-//
-//int SpacePirates::bargain(std::shared_ptr<SpaceShip> chosenShip) {
-//
-//}
-
 int SpacePirates::executeEvent(std::shared_ptr<SpaceShip> chosenShip) {
     std::cout << "You encounter with space pirates. ";
     int option = chooseOption();
