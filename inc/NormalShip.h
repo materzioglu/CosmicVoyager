@@ -11,9 +11,8 @@ class NormalShip : public SpaceShip {
 public:
     NormalShip() : SpaceShip(1.0, "Normal Ship") {}
 
-    bool checkFuel() override {
-        const double leastFuel{0.0};
-        return _fuel > leastFuel;
+    void getShipName() const override {
+        std::cout << "Normal Ship";
     }
 
 private:

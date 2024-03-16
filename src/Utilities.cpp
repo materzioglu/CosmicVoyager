@@ -24,8 +24,13 @@ double Utilities::generateRandomDouble(double start, double stop) {
     // This function generates a double in the range [start, stop).
 }
 
+bool Utilities::checkFuel(SpaceShip& spaceShip) {
+    const double leastFuel{0.0};
+    return spaceShip.getFuel() > leastFuel;
+}
+
 void Utilities::printCurrentValues(SpaceShip& spaceShip) {
-    std::cout << "\nCurrent _fuel: " << spaceShip.getFuel() << "\n";
+    std::cout << "\nCurrent fuel: " << spaceShip.getFuel() << "\n";
     std::cout << "Current health: " << spaceShip.getHealth() << "\n";
     std::cout << "Current money: " << spaceShip.getMoney() << "\n\n";
 }
