@@ -25,7 +25,7 @@ int SpacePirates::choose3Option() {
 
 int SpacePirates::choose2Option() {
     int option{0};
-    std::cout << "You do not have enough fuel. So, you cannot choose to run away.\n";
+    std::cout << "You do not have enough _fuel. So, you cannot choose to run away.\n";
     while(true) {
         std::cout << "Please enter (2) for fighting, and (3) for bargaining.\n";
         std::cin >> option;
@@ -119,12 +119,10 @@ int SpacePirates::executeEvent(std::shared_ptr<SpaceShip> chosenShip) {
                 option = choose2Option();
             }
         }
-
         else if(option == SP_FIGHT) {
             chooseFight(chosenShip);
             break;
         }
-
         else if(option == SP_BARGAIN) {
             eventResult = chooseBargain(chosenShip);
             if(eventResult == CONTINUE) {

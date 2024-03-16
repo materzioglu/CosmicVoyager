@@ -73,7 +73,7 @@ void GameManager::initializeGameManager() {
             _calledEvent = std::make_shared<SpacePirates>();
             _calledEvent->executeEvent(_chosenShip);
         }
-        if(!Utilities::checkFuel(*_chosenShip)) {
+        if(!_chosenShip->checkFuel()) {
             break;
         }
         Utilities::printCurrentValues(*_chosenShip);
