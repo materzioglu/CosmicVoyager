@@ -9,7 +9,7 @@
 
 class StrongShip : public SpaceShip {
 public:
-    StrongShip() : SpaceShip(0.5) {}
+    StrongShip() : SpaceShip(0.5, "Strong Ship") {}
 
     void getShipName() const override {
         std::cout << "Strong Ship";

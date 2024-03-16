@@ -10,13 +10,19 @@
 #include "GameEvent.h"
 #include "GameManager.h"
 #include "Definition.h"
+#include "Utilities.h"
 
 class SpacePirates : public GameEvent {
 public:
     SpacePirates() = default;
 
-    int executeEvent(std::shared_ptr<SpaceShip> chosenShip);
-    int chooseOption();
+    int executeEvent(std::shared_ptr<SpaceShip> chosenShip) override;
+    int chooseRunAway(std::shared_ptr<SpaceShip> chosenShip);
+    int chooseFight(std::shared_ptr<SpaceShip> chosenShip);
+    int chooseBargain(std::shared_ptr<SpaceShip> chosenShip);
+    int choose3Option();
+    int choose2Option();
+
 
 private:
 protected:

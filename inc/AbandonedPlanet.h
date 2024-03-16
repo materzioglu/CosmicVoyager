@@ -10,12 +10,13 @@
 #include "GameEvent.h"
 #include "GameManager.h"
 #include "Definition.h"
+#include "Utilities.h"
 
 class AbandonedPlanet : public GameEvent {
 public:
     AbandonedPlanet() = default;
 
-    int executeEvent(std::shared_ptr<SpaceShip> chosenShip);
+    int executeEvent(std::shared_ptr<SpaceShip> chosenShip) override;
 
 private:
 

@@ -3,22 +3,24 @@
 //
 
 #include <iostream>
-#include <windows.h>
+#include <limits>
 #include "GameManager.h"
-
-int GameManager::generateRandomNumber(int _limit) {
-    int generatedNumber = rand() % _limit + 1; // rand() % limit generates a number between 0 and limit - 1
-    return generatedNumber;
-}
 
 int GameManager::startGame() {
     int shipType{0};
     std::cout << "Welcome to the Cosmic Voyager. You will be a captain of a space ship and experience some exciting events.\n";
-    std::cout << "At first, you need to choose the type of your space ship. Please enter (1) for normal ship, (2) for fast ship, and (3) for strong ship.\n";
-    std::cin >> shipType;
-    while(!((shipType == 1) || (shipType == 2) || (shipType == 3))) {
-        std::cout << "This is an invalid value. Please enter (1) for normal ship, (2) for fast ship, and (3) for strong ship.\n";
+    std::cout << "At first, you need to choose the type of your space ship.\n";
+    while(true) {
+        std::cout << "Please enter (1) for normal ship, (2) for fast ship, and (3) for strong ship.\n";
         std::cin >> shipType;
+        if(std::cin.fail() || !((shipType == 1) || (shipType == 2) || (shipType == 3))) {
+            std::cout << "This is an invalid value.\n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
+        else {
+            break;
+        }
     }
     return shipType;
 }
@@ -37,15 +39,14 @@ std::shared_ptr<SpaceShip> GameManager::chooseShip() {
             chosenShip = std::make_shared<StrongShip>();
             break;
     }
-    std::cout << "\nYou chose ";
-    chosenShip->getShipName();
-    std::cout << ". Let's start!\n\n";
+    std::cout << "\nYou chose " << chosenShip->getName() << ". Let's start!\n\n";
     return chosenShip;
 }
 
 std::shared_ptr<GameEvent> GameManager::callEvent() {
-    const int randEventLimit{3};
-    int chosenEvent = generateRandomNumber(randEventLimit);
+    const int minValue{1};
+    const int maxValue{3};
+    int chosenEvent = Utilities::generateRandomInteger(minValue, maxValue);
     std::shared_ptr<GameEvent> calledEvent;
     switch (chosenEvent) {
         case 1:
@@ -62,8 +63,8 @@ std::shared_ptr<GameEvent> GameManager::callEvent() {
 }
 
 void GameManager::initializeGameManager() {
-    const int callingAmount{5};
     _chosenShip = chooseShip();
+    const int callingAmount{5};
     for(int i = 0; i < callingAmount; i++) {
         std::cout << "EVENT: " << i + 1 << "\n";
         _calledEvent = callEvent();
@@ -72,12 +73,10 @@ void GameManager::initializeGameManager() {
             _calledEvent = std::make_shared<SpacePirates>();
             _calledEvent->executeEvent(_chosenShip);
         }
-        if(!checkFuel()) {
+        if(!Utilities::checkFuel(*_chosenShip)) {
             break;
         }
-        std::cout << "\n";
-        printCurrentValues();
-        std::cout << "\n";
+        Utilities::printCurrentValues(*_chosenShip);
     }
     printGameResult();
 }
@@ -96,21 +95,4 @@ double GameManager::getGameScore() {
 void GameManager::printGameResult() {
     double score = getGameScore();
     std::cout << "Game is over. Your score: " << score;
-}
-
-void GameManager::printCurrentValues() {
-    std::cout << "Current fuel: " << _chosenShip->getFuel() << "\n";
-    std::cout << "Current health: " << _chosenShip->getHealth() << "\n";
-    std::cout << "Current money: " << _chosenShip->getMoney() << "\n\n";
-}
-
-bool GameManager::checkFuel() {
-    const int leastFuel{0};
-    double currentFuel{_chosenShip->getFuel()};
-    if(currentFuel <= leastFuel){
-        return false;
-    }
-    else {
-        return true;
-    }
 }

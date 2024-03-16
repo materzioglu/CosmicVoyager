@@ -13,21 +13,22 @@
 #include "AbandonedPlanet.h"
 #include "SpacePirates.h"
 #include <memory>
+#include <vector>
 #include <iostream>
 #include <array>
 #include "Definition.h"
+#include "Utilities.h"
 
 class GameManager {
 public:
-    static int generateRandomNumber(int _limit);
     void initializeGameManager();
     int startGame();
-    bool checkFuel();
     double getGameScore();
     void printGameResult();
-    void printCurrentValues();
     std::shared_ptr<SpaceShip> chooseShip();
     std::shared_ptr<GameEvent> callEvent();
+//    std::vector<std::shared_ptr<SpaceShip>> chosenShipVector;
+//    std::vector<std::shared_ptr<GameEvent>> calledEventVector;
 
 private:
 

@@ -19,4 +19,6 @@ add_executable(CosmicVoyager main.cpp
         src/AbandonedPlanet.cpp
         src/SpacePirates.cpp
         src/GameManager.cpp
-        inc/Definition.h)
+        inc/Definition.h
+        inc/Utilities.h
+        src/Utilities.cpp)

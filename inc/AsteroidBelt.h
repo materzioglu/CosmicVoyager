@@ -10,12 +10,13 @@
 #include "GameEvent.h"
 #include "GameManager.h"
 #include "Definition.h"
+#include "Utilities.h"
 
 class AsteroidBelt : public GameEvent {
 public:
     AsteroidBelt() = default;
 
-    int executeEvent(std::shared_ptr<SpaceShip> chosenShip);
+    int executeEvent(std::shared_ptr<SpaceShip> chosenShip) override;
 
 private:
 

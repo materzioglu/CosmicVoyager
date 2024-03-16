@@ -12,7 +12,7 @@
 
 class SpaceShip {
 public:
-    SpaceShip(double _shipCoefficient) : shipCoefficient{_shipCoefficient} {
+    SpaceShip(double _shipCoefficient, std::string _name) : shipCoefficient{_shipCoefficient}, name{_name} {
         fuel = 100;
         health = 100;
         money = 0;
@@ -21,6 +21,14 @@ public:
     virtual ~SpaceShip() = default;
 
     virtual void getShipName() const = 0;
+
+    std::string getName() {
+        return name;
+    }
+
+    void setName(std::string _name) {
+        name = _name;
+    }
 
     double getFuel() {
         return fuel;
@@ -53,6 +61,7 @@ public:
 private:
 
 protected:
+    std::string name;
     double fuel;
     double health;
     double money;
