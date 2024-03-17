@@ -25,52 +25,42 @@ int GameManager::startGame() {
     return shipType;
 }
 
-std::shared_ptr<SpaceShip> GameManager::chooseShip() {
-    int chosenType = startGame();
-    std::shared_ptr<SpaceShip> chosenShip;
-    switch (chosenType) {
-        case 1:
-            chosenShip = std::make_shared<NormalShip>();
-            break;
-        case 2:
-            chosenShip = std::make_shared<FastShip>();
-            break;
-        case 3:
-            chosenShip = std::make_shared<StrongShip>();
-            break;
-    }
-    std::cout << "\nYou chose " << chosenShip->getName() << ". Let's start!\n\n";
-    return chosenShip;
+void GameManager::addSpaceShip() {
+    spaceShipVector.emplace_back(std::make_shared<NormalShip>());
+    spaceShipVector.emplace_back(std::make_shared<FastShip>());
+    spaceShipVector.emplace_back(std::make_shared<StrongShip>());
 }
 
-std::shared_ptr<GameEvent> GameManager::callEvent() {
-    const int minValue{1};
-    const int maxValue{3};
+void GameManager::addGameEvent() {
+    gameEventVector.emplace_back(std::make_shared<AsteroidBelt>());
+    gameEventVector.emplace_back(std::make_shared<AbandonedPlanet>());
+    gameEventVector.emplace_back(std::make_shared<SpacePirates>());
+}
+
+void GameManager::chooseShip() {
+    int chosenType = startGame();
+    addSpaceShip();
+    _chosenShip = spaceShipVector[chosenType - 1];
+    std::cout << "\nYou chose " << _chosenShip->getName() << ". Let's start!\n\n";
+}
+
+void GameManager::callEvent() {
+    const int minValue{0};
+    const int maxValue{2};
     int chosenEvent = Utilities::generateRandomInteger(minValue, maxValue);
-    std::shared_ptr<GameEvent> calledEvent;
-    switch (chosenEvent) {
-        case 1:
-            calledEvent = std::make_shared<AsteroidBelt>();
-            break;
-        case 2:
-            calledEvent = std::make_shared<AbandonedPlanet>();
-            break;
-        case 3:
-            calledEvent = std::make_shared<SpacePirates>();
-            break;
-    }
-    return calledEvent;
+    addGameEvent();
+    _calledEvent = gameEventVector[chosenEvent];
 }
 
 void GameManager::initializeGameManager() {
-    _chosenShip = chooseShip();
+    chooseShip();
     const int callingAmount{5};
     for(int i = 0; i < callingAmount; i++) {
         std::cout << "EVENT: " << i + 1 << "\n";
-        _calledEvent = callEvent();
+        callEvent();
         int eventResult = _calledEvent->executeEvent(_chosenShip);
         if(eventResult == AP_CALL_SPACE_PIRATES) {
-            _calledEvent = std::make_shared<SpacePirates>();
+            _calledEvent = gameEventVector[SPACE_PIRATES];
             _calledEvent->executeEvent(_chosenShip);
         }
         if(!Utilities::checkFuel(*_chosenShip)) {
@@ -82,13 +72,10 @@ void GameManager::initializeGameManager() {
 }
 
 double GameManager::getGameScore() {
-    double currentFuel{_chosenShip->getFuel()};
-    double currentHealth{_chosenShip->getHealth()};
-    double currentMoney{_chosenShip->getMoney()};
-    const int fuelCoefficient{5};
-    const int healthCoefficient{10};
-    const int moneyCoefficient{10};
-    double score = currentFuel * fuelCoefficient + currentHealth * healthCoefficient + currentMoney * moneyCoefficient;
+    const double fuelCoefficient{5.0};
+    const double healthCoefficient{10.0};
+    const double moneyCoefficient{10.0};
+    double score = _chosenShip->getFuel() * fuelCoefficient + _chosenShip->getHealth() * healthCoefficient + _chosenShip->getMoney() * moneyCoefficient;
     return score;
 }
 

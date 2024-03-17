@@ -22,13 +22,15 @@
 class GameManager {
 public:
     void initializeGameManager();
-    int startGame();
+    static int startGame();
     double getGameScore();
     void printGameResult();
-    std::shared_ptr<SpaceShip> chooseShip();
-    std::shared_ptr<GameEvent> callEvent();
-//    std::vector<std::shared_ptr<SpaceShip>> chosenShipVector;
-//    std::vector<std::shared_ptr<GameEvent>> calledEventVector;
+    void addSpaceShip();
+    void addGameEvent();
+    void chooseShip();
+    void callEvent();
+    std::vector<std::shared_ptr<SpaceShip>> spaceShipVector;
+    std::vector<std::shared_ptr<GameEvent>> gameEventVector;
 
 private:
 

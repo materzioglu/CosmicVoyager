@@ -7,7 +7,6 @@
 
 int AsteroidBelt::executeEvent(std::shared_ptr<SpaceShip> chosenShip) {
     std::cout << "You are about to go through the Asteroid Belt. This event will be happened 3 times. You might get damaged. Good luck.\n";
-
     double damage{0.0};
     double changedHealth{chosenShip->getHealth()};
     int counter{0};
@@ -15,7 +14,6 @@ int AsteroidBelt::executeEvent(std::shared_ptr<SpaceShip> chosenShip) {
     const int callingAmount{3};
     const int minValue{1};
     const int maxValue{2};
-
     for (int i = 0; i < callingAmount; ++i) {
         int option = Utilities::generateRandomInteger(minValue, maxValue);
         if (option == 1) {

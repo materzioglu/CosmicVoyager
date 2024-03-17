@@ -15,15 +15,6 @@ int Utilities::generateRandomInteger(int start, int stop) {
     // This function generates an integer in the range [start, stop].
 }
 
-double Utilities::generateRandomDouble(double start, double stop) {
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_real_distribution<> dis(start,stop);
-    return dis(gen);
-    // C++11 random library
-    // This function generates a double in the range [start, stop).
-}
-
 bool Utilities::checkFuel(SpaceShip& spaceShip) {
     const double leastFuel{0.0};
     return spaceShip.getFuel() > leastFuel;
