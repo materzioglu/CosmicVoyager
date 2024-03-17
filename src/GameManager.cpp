@@ -9,9 +9,12 @@
 int GameManager::startGame() {
     int shipType{0};
     std::cout << "Welcome to the Cosmic Voyager. You will be a captain of a space ship and experience some exciting events.\n";
-    std::cout << "At first, you need to choose the type of your space ship.\n";
+    std::cout << "At first, you need to choose the type of your space ship.\n\n";
+    addSpaceShip();
+    addGameEvent();
+    printAllShipInfo();
     while(true) {
-        std::cout << "Please enter (1) for normal ship, (2) for fast ship, and (3) for strong ship.\n";
+        std::cout << "\nPlease enter (1) for normal ship, (2) for fast ship, and (3) for strong ship.\n";
         std::cin >> shipType;
         if(std::cin.fail() || !((shipType == 1) || (shipType == 2) || (shipType == 3))) {
             std::cout << "This is an invalid value.\n";
@@ -23,6 +26,12 @@ int GameManager::startGame() {
         }
     }
     return shipType;
+}
+
+void GameManager::printAllShipInfo() {
+    for(auto spaceShip : spaceShipVector) {
+        spaceShip->printShipInfo();
+    }
 }
 
 void GameManager::addSpaceShip() {
@@ -39,7 +48,6 @@ void GameManager::addGameEvent() {
 
 void GameManager::chooseShip() {
     int chosenType = startGame();
-    addSpaceShip();
     _chosenShip = spaceShipVector[chosenType - 1];
     std::cout << "\nYou chose " << _chosenShip->getName() << ". Let's start!\n\n";
 }
@@ -48,7 +56,6 @@ void GameManager::callEvent() {
     const int minValue{0};
     const int maxValue{2};
     int chosenEvent = Utilities::generateRandomInteger(minValue, maxValue);
-    addGameEvent();
     _calledEvent = gameEventVector[chosenEvent];
 }
 

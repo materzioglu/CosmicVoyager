@@ -19,10 +19,7 @@ public:
     int executeEvent(std::shared_ptr<SpaceShip> chosenShip) override;
 
 private:
-
-
 protected:
-
 };
 
 

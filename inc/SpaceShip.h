@@ -20,7 +20,7 @@ public:
 
     virtual ~SpaceShip() = default;
 
-    virtual void getShipName() const = 0;
+    virtual void printShipInfo() const = 0;
 
     std::string getName() {
         return _name;
@@ -52,7 +52,6 @@ public:
     }
 
 private:
-
 protected:
     std::string _name;
     double _fuel;

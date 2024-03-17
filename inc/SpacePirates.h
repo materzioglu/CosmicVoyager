@@ -23,7 +23,6 @@ public:
     int choose3Option();
     int choose2Option();
 
-
 private:
 protected:
 };

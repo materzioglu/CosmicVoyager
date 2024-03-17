@@ -11,8 +11,9 @@ class FastShip : public SpaceShip {
 public:
     FastShip() : SpaceShip(1.5, "Fast Ship") {}
 
-    void getShipName() const override {
-        std::cout << "Fast Ship";
+    void printShipInfo() const override {
+        std::cout << "For the " << _name <<" the ship coefficient is: " << _shipCoefficient;
+        std::cout << ". Default values are multiplied by " << _shipCoefficient << " for escape probability and damage.\n";
     }
 
 private:

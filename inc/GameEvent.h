@@ -15,10 +15,7 @@ public:
     virtual int executeEvent(std::shared_ptr<SpaceShip> chosenShip) = 0;
 
 private:
-
-
 protected:
-
 };
 
 #endif //COSMICVOYAGER_GAMEEVENT_H
