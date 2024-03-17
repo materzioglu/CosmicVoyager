@@ -14,7 +14,7 @@ int GameManager::startGame() {
     addGameEvent();
     printAllShipInfo();
     while(true) {
-        std::cout << "\nPlease enter (1) for normal ship, (2) for fast ship, and (3) for strong ship.\n";
+        std::cout << "\nPlease enter (1) for Normal Ship, (2) for Fast Ship, and (3) for Strong Ship.\n";
         std::cin >> shipType;
         if(std::cin.fail() || !((shipType == 1) || (shipType == 2) || (shipType == 3))) {
             std::cout << "This is an invalid value.\n";
@@ -49,7 +49,7 @@ void GameManager::addGameEvent() {
 void GameManager::chooseShip() {
     int chosenType = startGame();
     _chosenShip = spaceShipVector[chosenType - 1];
-    std::cout << "\nYou chose " << _chosenShip->getName() << ". Let's start!\n\n";
+    std::cout << "You chose " << _chosenShip->getName() << ". Let's start!\n";
 }
 
 void GameManager::callEvent() {
@@ -61,6 +61,7 @@ void GameManager::callEvent() {
 
 void GameManager::initializeGameManager() {
     chooseShip();
+    Utilities::printCurrentValues(*_chosenShip);
     const int callingAmount{5};
     for(int i = 0; i < callingAmount; i++) {
         std::cout << "EVENT: " << i + 1 << "\n";

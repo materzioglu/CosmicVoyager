@@ -50,7 +50,7 @@ int SpacePirates::chooseRunAway(std::shared_ptr<SpaceShip> chosenShip) {
     double escapeProbability = Utilities::generateRandomInteger(minValue, maxValue);
     if(changedFuel >= requiredFuel) {
         if(escapeProbability < defaultEscapeProbability * chosenShip->getShipCoefficent()){
-            std::cout << "Congrats! You are able to run away from the space pirates.\n";
+            std::cout << "Congrats! You are able to run away from the space pirates. You used 33 fuel to run away.\n";
             changedFuel -= requiredFuel;
             chosenShip->setFuel(changedFuel);
             return CONTINUE;
@@ -75,7 +75,7 @@ int SpacePirates::chooseFight(std::shared_ptr<SpaceShip> chosenShip) {
         std::cout << "Congrats! You win.\n";
     }
     else {
-        std::cout << "Sorry, you loosed the fight.\n";
+        std::cout << "Sorry, you lost the fight.\n";
         changedHealth -= defaultDamage * chosenShip->getShipCoefficent();
         chosenShip->setHealth(changedHealth);
     }
@@ -88,10 +88,11 @@ int SpacePirates::chooseBargain(std::shared_ptr<SpaceShip> chosenShip) {
     const int minValue{1};
     const int maxValue{3};
     double payment = static_cast<double>(Utilities::generateRandomInteger(minValue, maxValue)) * 10.0;
+    std::cout << "Required money: " << payment << "\n";
     if(changedMoney >= payment){
         changedMoney -= payment;
         chosenShip->setMoney(changedMoney);
-        std::cout << "You pay " << payment << " to space pirates.\n";
+        std::cout << "You were able to pay money.\n";
         return CONTINUE;
     }
     else {
@@ -111,7 +112,7 @@ int SpacePirates::executeEvent(std::shared_ptr<SpaceShip> chosenShip) {
                 break;
             }
             else if(eventResult == SP_RUN_AWAY_FAILED) {
-                std::cout << "Unfortunately, you cannot be able to run away from the space pirates. You encounter with space pirates again.\n";
+                std::cout << "Unfortunately, you were not able to run away from the space pirates. You encounter with space pirates again.\n";
                 option = choose3Option();
             }
             else {

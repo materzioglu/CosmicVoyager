@@ -12,8 +12,8 @@ public:
     StrongShip() : SpaceShip(0.5, "Strong Ship") {}
 
     void printShipInfo() const override {
-        std::cout << "For the " << _name <<" the ship coefficient is: " << _shipCoefficient;
-        std::cout << ". Default values are multiplied by " << _shipCoefficient << " for escape probability and damage.\n";
+        std::cout << "The ship coefficient of the " << _name <<" is " << _shipCoefficient;
+        std::cout << ". Default values of escape probability and damage are multiplied by " << _shipCoefficient << ".\n";
     }
 
 private:
