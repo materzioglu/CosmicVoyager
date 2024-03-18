@@ -8,15 +8,28 @@
 
 int GameManager::startGame() {
     int shipType{0};
+    bool checkInput{false};
     std::cout << "Welcome to the Cosmic Voyager. You will be a captain of a space ship and experience some exciting events.\n";
     std::cout << "At first, you need to choose the type of your space ship.\n\n";
     addSpaceShip();
     addGameEvent();
     printAllShipInfo();
     while(true) {
-        std::cout << "\nPlease enter (1) for Normal Ship, (2) for Fast Ship, and (3) for Strong Ship.\n";
+        std::cout << "\nPlease enter\n";
+        for(int i = 0; i < spaceShipVector.size(); ++i) {
+            std::cout << "(" << i + 1 << ")" << " for " << spaceShipVector[i]->getName() << "\n";
+        }
         std::cin >> shipType;
-        if(std::cin.fail() || !((shipType == 1) || (shipType == 2) || (shipType == 3))) {
+        for(int i = 0; i < spaceShipVector.size(); ++i) {
+            if(shipType == (i + 1)) {
+                checkInput = true;
+                break;
+            }
+            else {
+                checkInput = false;
+            }
+        }
+        if(std::cin.fail() || !checkInput) {
             std::cout << "This is an invalid value.\n";
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -63,7 +76,7 @@ void GameManager::initializeGameManager() {
     chooseShip();
     Utilities::printCurrentValues(*_chosenShip);
     const int callingAmount{5};
-    for(int i = 0; i < callingAmount; i++) {
+    for(int i = 0; i < callingAmount; ++i) {
         std::cout << "EVENT: " << i + 1 << "\n";
         callEvent();
         int eventResult = _calledEvent->executeEvent(_chosenShip);

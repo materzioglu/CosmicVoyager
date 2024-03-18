@@ -50,7 +50,7 @@ int SpacePirates::chooseRunAway(std::shared_ptr<SpaceShip> chosenShip) {
     double escapeProbability = Utilities::generateRandomInteger(minValue, maxValue);
     if(changedFuel >= requiredFuel) {
         if(escapeProbability < defaultEscapeProbability * chosenShip->getShipCoefficent()){
-            std::cout << "Congrats! You are able to run away from the space pirates. You used 33 fuel to run away.\n";
+            std::cout << "Congrats! You are able to run away from the space pirates. You used " << requiredFuel << " fuel to run away.\n";
             changedFuel -= requiredFuel;
             chosenShip->setFuel(changedFuel);
             return CONTINUE;
@@ -87,7 +87,8 @@ int SpacePirates::chooseBargain(std::shared_ptr<SpaceShip> chosenShip) {
     double changedMoney{chosenShip->getMoney()};
     const int minValue{1};
     const int maxValue{3};
-    double payment = static_cast<double>(Utilities::generateRandomInteger(minValue, maxValue)) * 10.0;
+    const double multiplier{10.0};
+    double payment = static_cast<double>(Utilities::generateRandomInteger(minValue, maxValue)) * multiplier;
     std::cout << "Required money: " << payment << "\n";
     if(changedMoney >= payment){
         changedMoney -= payment;
